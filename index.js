@@ -40,6 +40,10 @@ var database_1 = require("./database");
 var express = require('express');
 var associations_1 = require("./associations");
 var author_routes_1 = require("./Routes/author.routes");
+var book_routes_1 = require("./Routes/book.routes");
+var member_routes_1 = require("./Routes/member.routes");
+var loan_route_1 = require("./Routes/loan.route");
+var reservation_routes_1 = require("./Routes/reservation.routes");
 var app = express();
 app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded requests
 app.use(express.json()); // Middleware to parse JSON requests
@@ -59,6 +63,10 @@ app.use(express.json()); // Middleware to parse JSON requests
                 _a.sent();
                 console.log("All models synchronized");
                 app.use('/authors', author_routes_1.default);
+                app.use('/books', book_routes_1.default);
+                app.use('/members', member_routes_1.default);
+                app.use('/loans', loan_route_1.default);
+                app.use('/reservations', reservation_routes_1.default);
                 PORT_1 = process.env.PORT || 3000;
                 app.listen(PORT_1, function () {
                     console.log("Server is running on port ".concat(PORT_1));

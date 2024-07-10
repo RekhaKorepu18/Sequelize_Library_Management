@@ -30,7 +30,7 @@ MemberRouter .get('/:id', async (req, res) => {
 MemberRouter .post('/allBooks', async (req , res) => {
     try{
         if(members){
-            await Book.bulkCreate(members);
+            await Member.bulkCreate(members);
             console.log(' inserted members data');
             res.json(members);
         }

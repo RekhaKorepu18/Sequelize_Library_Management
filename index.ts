@@ -5,6 +5,7 @@ import authorRoutes from './Routes/author.routes';
 import bookRoutes from './Routes/book.routes';
 import memberRoutes from './Routes/member.routes';
 import LoanRoutes from './Routes/loan.route';
+import reserveRoutes from './Routes/reservation.routes';
 
 const app = express();
 import { Sequelize} from 'sequelize';
@@ -28,6 +29,7 @@ app.use('/authors',authorRoutes);
 app.use('/books',bookRoutes);
 app.use('/members',memberRoutes);
 app.use('/loans',LoanRoutes);
+app.use('/reservations',reserveRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
