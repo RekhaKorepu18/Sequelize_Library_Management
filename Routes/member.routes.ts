@@ -27,7 +27,7 @@ MemberRouter .get('/:id', async (req, res) => {
     }
 });
 // creating all authors at once.
-MemberRouter .post('/allBooks', async (req , res) => {
+MemberRouter .post('/allMembers', async (req , res) => {
     try{
         if(members){
             await Member.bulkCreate(members);

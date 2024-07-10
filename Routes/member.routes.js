@@ -86,14 +86,14 @@ MemberRouter.get('/:id', function (req, res) { return __awaiter(void 0, void 0, 
     });
 }); });
 // creating all authors at once.
-MemberRouter.post('/allBooks', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+MemberRouter.post('/allMembers', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var err_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
                 if (!insertionData_1.members) return [3 /*break*/, 2];
-                return [4 /*yield*/, Book.bulkCreate(insertionData_1.members)];
+                return [4 /*yield*/, members_1.Member.bulkCreate(insertionData_1.members)];
             case 1:
                 _a.sent();
                 console.log(' inserted members data');

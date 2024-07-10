@@ -96,7 +96,7 @@ reserveRouter.post('/allReserves', function (req, res) { return __awaiter(void 0
                 return [4 /*yield*/, reservations_1.Reservation.bulkCreate(insertionData_1.reservations)];
             case 1:
                 _a.sent();
-                console.log(' inserted loans data');
+                console.log(' inserted reserves data');
                 res.json(insertionData_1.reservations);
                 _a.label = 2;
             case 2: return [3 /*break*/, 4];

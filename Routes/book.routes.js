@@ -96,7 +96,7 @@ BookRouter.post('/allBooks', function (req, res) { return __awaiter(void 0, void
                 return [4 /*yield*/, books_1.Book.bulkCreate(insertionData_1.books)];
             case 1:
                 _a.sent();
-                console.log(' inserted authors data');
+                console.log(' inserted books data');
                 res.json(insertionData_1.books);
                 _a.label = 2;
             case 2: return [3 /*break*/, 4];

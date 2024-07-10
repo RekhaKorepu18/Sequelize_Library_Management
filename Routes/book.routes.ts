@@ -31,7 +31,7 @@ BookRouter .post('/allBooks', async (req , res) => {
     try{
         if(books){
             await Book.bulkCreate(books);
-            console.log(' inserted authors data');
+            console.log(' inserted books data');
             res.json(books);
         }
     }catch (err: any) {

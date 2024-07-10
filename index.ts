@@ -19,7 +19,7 @@ app.use(express.json());  // Middleware to parse JSON requests
         console.log('connection  established');
          
         associations(); // Setting-up associations
-        await sequelize.sync({force: true});
+        await sequelize.sync({force: false});
         console.log("All models synchronized");
 
         

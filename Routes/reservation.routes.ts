@@ -31,7 +31,7 @@ reserveRouter.post('/allReserves', async (req , res) => {
     try{
         if(reservations){
             await Reservation.bulkCreate(reservations);
-            console.log(' inserted loans data');
+            console.log(' inserted reserves data');
             res.json(reservations);
         }
     }catch (err: any) {
