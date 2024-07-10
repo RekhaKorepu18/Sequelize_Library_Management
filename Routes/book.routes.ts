@@ -1,6 +1,6 @@
 const express=require('express');
 const BookRouter = express.Router();
-import { Book } from '../models/authors';
+import { Book } from '../models/books';
 import { books } from './insertionData';
 
 // Get all authors
