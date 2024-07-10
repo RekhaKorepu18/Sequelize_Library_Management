@@ -4,6 +4,8 @@ import {associations} from './associations';
 import authorRoutes from './Routes/author.routes';
 import bookRoutes from './Routes/book.routes';
 import memberRoutes from './Routes/member.routes';
+import LoanRoutes from './Routes/loan.route';
+
 const app = express();
 import { Sequelize} from 'sequelize';
 
@@ -25,6 +27,7 @@ app.use(express.json());  // Middleware to parse JSON requests
 app.use('/authors',authorRoutes);
 app.use('/books',bookRoutes);
 app.use('/members',memberRoutes);
+app.use('/loans',LoanRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
