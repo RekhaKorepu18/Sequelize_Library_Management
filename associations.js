@@ -36,40 +36,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var database_1 = require("./database");
-var express = require('express');
-var associations_1 = require("./associations");
-var author_routes_1 = require("./Routes/author.routes");
-var app = express();
-app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded requests
-app.use(express.json()); // Middleware to parse JSON requests
-(function () { return __awaiter(void 0, void 0, void 0, function () {
-    var PORT_1, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, 4, 5]);
-                return [4 /*yield*/, database_1.sequelize.authenticate()];
-            case 1:
-                _a.sent();
-                console.log('connection  established');
-                (0, associations_1.associations)(); // Setting-up associations
-                return [4 /*yield*/, database_1.sequelize.sync({ force: true })];
-            case 2:
-                _a.sent();
-                console.log("All models synchronized");
-                app.use('/authors', author_routes_1.default);
-                PORT_1 = process.env.PORT || 3000;
-                app.listen(PORT_1, function () {
-                    console.log("Server is running on port ".concat(PORT_1));
-                });
-                return [3 /*break*/, 5];
-            case 3:
-                error_1 = _a.sent();
-                console.log('Unable to connect to database:', error_1);
-                return [3 /*break*/, 5];
-            case 4: return [7 /*endfinally*/];
-            case 5: return [2 /*return*/];
-        }
+exports.associations = void 0;
+var books_1 = require("./models/books");
+var authors_1 = require("./models/authors");
+var loans_1 = require("./models/loans");
+var reservations_1 = require("./models/reservations");
+var members_1 = require("./models/members");
+//Author.hasMany(Book);
+//Book.belongsTo(Author);
+function associations() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            authors_1.Author.hasMany(books_1.Book, { foreignKey: 'author_id' });
+            books_1.Book.belongsTo(authors_1.Author, { foreignKey: 'author_id' });
+            members_1.Member.hasMany(loans_1.Loan, { foreignKey: 'member_id' });
+            loans_1.Loan.belongsTo(members_1.Member, { foreignKey: 'member_id' });
+            members_1.Member.hasMany(reservations_1.Reservation, { foreignKey: 'member_id' });
+            reservations_1.Reservation.belongsTo(members_1.Member, { foreignKey: 'member_id' });
+            books_1.Book.hasMany(loans_1.Loan, { foreignKey: 'book_id' });
+            loans_1.Loan.belongsTo(books_1.Book, { foreignKey: 'book_id' });
+            books_1.Book.hasMany(reservations_1.Reservation, { foreignKey: 'book_id' });
+            reservations_1.Reservation.belongsTo(books_1.Book, { foreignKey: 'book_id' });
+            return [2 /*return*/];
+        });
     });
-}); })();
+}
+exports.associations = associations;

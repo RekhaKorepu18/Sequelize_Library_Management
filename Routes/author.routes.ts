@@ -4,7 +4,7 @@ import { Author } from '../models/authors';
 import { authors} from './insertionData';
 
 // Get all authors
-AuthorRouter.get('/Allauthors', async (req: any , res: any) => {
+AuthorRouter.get('/allAuthors', async (req: any , res: any) => {
     try {
         // Fetch all authors include books
         const authors = await Author.findAll();
@@ -15,7 +15,7 @@ AuthorRouter.get('/Allauthors', async (req: any , res: any) => {
     }
 });
 // Get one author
-AuthorRouter.get('/:authorId', async (req, res) => {
+AuthorRouter.get('/:id', async (req, res) => {
     try {
         const author = await Author.findByPk(req.params.id);
         if (author === null) {
@@ -27,7 +27,7 @@ AuthorRouter.get('/:authorId', async (req, res) => {
     }
 });
 // creating all authors at once.
-AuthorRouter.post('/AllAuthors', async (req,res) => {
+AuthorRouter.post('/allAuthors', async (req , res) => {
     try{
         if(authors){
             await Author.bulkCreate(authors);
@@ -49,7 +49,7 @@ AuthorRouter.post('/newAuthor', async (req, res) => {
 });
 
 // Update an author
-AuthorRouter.put('/:authorId', async (req, res) => {
+AuthorRouter.put('/:id', async (req, res) => {
     try {
         const [updated] = await Author.update(req.body, {where: {id: req.params.id}});
         if (updated) {
@@ -63,7 +63,7 @@ AuthorRouter.put('/:authorId', async (req, res) => {
     }
 });
 // Delete an author
-AuthorRouter.delete('/:authorId', async (req, res) => {
+AuthorRouter.delete('/:id', async (req, res) => {
     try {
         const deleted = await Author.destroy({where: {id: req.params.id}});
         if (deleted) {

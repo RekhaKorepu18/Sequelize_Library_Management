@@ -40,14 +40,3 @@ var Loan = database_1.sequelize.define('Loan', {
     timestamps: false
 });
 exports.Loan = Loan;
-// Associations.
-/*Member.hasMany(Loan);
-Loan.belongsTo(Member);
-
-Loan.hasOne(Book);
-Book.hasMany(Loan);*/
-Loan.sync({ force: true }).then(function () {
-    console.log('loans table created');
-}).catch(function (err) {
-    console.error('Error while creating loans table', err);
-});
