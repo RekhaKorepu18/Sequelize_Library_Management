@@ -31,8 +31,18 @@ const Book = sequelize.define('Book', {
     }
 }, {
     tableName : 'books',
-    timestamps: false
-
+    timestamps: false,
+    indexes: [
+        {
+            name: 'idx_isbn',
+            fields: ['isbn'],
+            unique : true
+        },{
+            name: 'title_authorId_indx',
+            fields : ['title', 'author_id'],
+            concurrently : true
+        }
+    ]
 });
 
 

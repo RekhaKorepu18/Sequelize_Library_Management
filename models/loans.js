@@ -37,6 +37,16 @@ var Loan = database_1.sequelize.define('Loan', {
     }
 }, {
     tableName: 'loans',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+        {
+            name: 'indx_due_date',
+            fields: ['due_date']
+        }, {
+            name: 'bookid_memberid_idx',
+            fields: ['book_id', 'member_id'],
+            concurrently: true
+        }
+    ]
 });
 exports.Loan = Loan;

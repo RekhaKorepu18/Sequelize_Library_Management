@@ -30,7 +30,17 @@ const Reservation = sequelize.define('Reservation',{
     }
 }, {
     tableName : 'reservations',
-    timestamps: false
+    timestamps: false,
+    indexes : [
+        {
+            name : 'indx_reservation_date',
+            fields : ['reservation_date']
+        },{
+            name : 'bookId_idx',
+            fields: ['book_id'],
+            concurrently: true
+        }
+    ]
 });
 
  export{Reservation};

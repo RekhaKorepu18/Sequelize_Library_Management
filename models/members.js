@@ -25,6 +25,13 @@ var Member = database_1.sequelize.define('Member', {
     }
 }, {
     tableName: 'members',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+        {
+            name: 'indx_email',
+            fields: ['email'],
+            concurrently: true
+        }
+    ]
 });
 exports.Member = Member;

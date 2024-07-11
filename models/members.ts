@@ -24,9 +24,16 @@ const Member = sequelize.define('Member', {
     }
 }, {
    tableName: 'members',
-   timestamps: false
+   timestamps: false,
+   indexes : [
+    {
+        name: 'indx_email',
+        fields : ['email'],
+        concurrently : true
+    }
+   ]
 });
 
-
+ 
  export{Member};
 

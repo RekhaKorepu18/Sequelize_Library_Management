@@ -6,6 +6,7 @@ import bookRoutes from './Routes/book.routes';
 import memberRoutes from './Routes/member.routes';
 import LoanRoutes from './Routes/loan.route';
 import reserveRoutes from './Routes/reservation.routes';
+import queryRoutes from './Queries';
 
 const app = express();
 import { Sequelize} from 'sequelize';
@@ -19,7 +20,7 @@ app.use(express.json());  // Middleware to parse JSON requests
         console.log('connection  established');
          
         associations(); // Setting-up associations
-        await sequelize.sync({force: false});
+        await sequelize.sync({alter: true});
         console.log("All models synchronized");
 
         
@@ -30,6 +31,9 @@ app.use('/books',bookRoutes);
 app.use('/members',memberRoutes);
 app.use('/loans',LoanRoutes);
 app.use('/reservations',reserveRoutes);
+
+//Queries
+app.use('/queries',queryRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -21,6 +21,14 @@ var Author = database_1.sequelize.define('Author', {
     }
 }, {
     tableName: 'authors',
-    timestamps: false
+    timestamps: false,
+    indexes: [
+        {
+            name: 'author_name_idx',
+            fields: ['name'],
+            unique: true,
+            concurrently: true
+        }
+    ]
 });
 exports.Author = Author;

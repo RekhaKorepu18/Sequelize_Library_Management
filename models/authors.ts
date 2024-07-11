@@ -19,7 +19,16 @@ const Author = sequelize.define('Author', {
 },
   { 
     tableName: 'authors',
-    timestamps : false
+    timestamps : false,
+
+    indexes : [
+        {
+        name : 'author_name_idx',
+        fields: ['name'],
+        unique : true,
+        concurrently : true
+        }
+    ]
 });
 
 export{Author};
