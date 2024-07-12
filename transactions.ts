@@ -39,11 +39,11 @@ router.get('/insert_authorbook', async(req, res) =>{
     }
 });
 //====Borrowing a book, If book is loaned, the data is entered into loans table and reserved details should be removed from reservation details.
-router.get('/borrow_book/:memberid/:bookid', async(req, res)=> {
+router.get('/borrow_book/:memberId/:bookId', async(req, res)=> {
     try {
         const result = await sequelize.transaction(async t =>{
-             const member_id = req.params.memberid;
-             const book_id = req.params.bookid;
+             const member_id = req.params.memberId;
+             const book_id = req.params.bookId;
              const reserved_book = await Reservation.findAll(
                 {
                     where : {
@@ -59,10 +59,11 @@ router.get('/borrow_book/:memberid/:bookid', async(req, res)=> {
                 book_id: book_id,
                 member_id : member_id,
                 loan_date : new Date(),
-                due_date :  new Date(Date.now() + 3 * 24 * 60 * 60 * 1000) //3 days away from due_date
+                due_date :  new Date(Date.now() + 3 * 24 * 60 * 60 * 1000) //3 days away from loan_date 
             })
             res.json(createLoan);
             }
+            // Deleting book from reservation table.
             await Reservation.destroy({where : {
                 [Op.and]: [
                 {book_id : book_id},
@@ -73,8 +74,8 @@ router.get('/borrow_book/:memberid/:bookid', async(req, res)=> {
             console.log("Transaction committed");
          });
         }
-         catch(error){
-            console.log(error);
+         catch(err){
+            console.log(err);
             console.log('Transaction failed and it was rollbacked');
 
          }

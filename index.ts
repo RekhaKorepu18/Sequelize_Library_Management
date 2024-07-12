@@ -7,7 +7,7 @@ import memberRoutes from './Routes/member.routes';
 import LoanRoutes from './Routes/loan.route';
 import reserveRoutes from './Routes/reservation.routes';
 import queryRoutes from './Queries';
-import transRoutes from './transactions';
+import transactionRoutes from './transactions';
 
 const app = express();
 import { Sequelize} from 'sequelize';
@@ -32,7 +32,7 @@ app.use('/books',bookRoutes);
 app.use('/members',memberRoutes);
 app.use('/loans',LoanRoutes);
 app.use('/reservations',reserveRoutes);
-app.use('/transactions',transRoutes);
+app.use('/transactions',transactionRoutes);
 
 
 //Queries
