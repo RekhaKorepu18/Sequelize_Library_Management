@@ -82,7 +82,7 @@ router.get('/authors/:authorId/books', async (req, res) => {
     }
 });
 // Member who borrowed more books
-router.get('/api/members/mostBooks', async (req, res) => {
+router.get('/members/mostBooks', async (req, res) => {
     try {
       const mostActiveMember = await Loan.findAll({
         attributes: [

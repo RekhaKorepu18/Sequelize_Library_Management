@@ -45,6 +45,7 @@ var member_routes_1 = require("./Routes/member.routes");
 var loan_route_1 = require("./Routes/loan.route");
 var reservation_routes_1 = require("./Routes/reservation.routes");
 var Queries_1 = require("./Queries");
+var transactions_1 = require("./transactions");
 var app = express();
 app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded requests
 app.use(express.json()); // Middleware to parse JSON requests
@@ -68,6 +69,7 @@ app.use(express.json()); // Middleware to parse JSON requests
                 app.use('/members', member_routes_1.default);
                 app.use('/loans', loan_route_1.default);
                 app.use('/reservations', reservation_routes_1.default);
+                app.use('/transactions', transactions_1.default);
                 //Queries
                 app.use('/queries', Queries_1.default);
                 PORT_1 = process.env.PORT || 3000;
