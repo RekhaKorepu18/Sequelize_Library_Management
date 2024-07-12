@@ -7,6 +7,7 @@ import { sequelize } from './database';
 const { Sequelize, Op } = require('sequelize');
 const express=require('express');
 const router = express.Router();
+//=====We cannot insert book without author_id If author_id is null, it rollbacks the entire transaction
 router.get('/insert_authorbook', async(req, res) =>{
     try{
         const result = await sequelize.transaction(async t => {
@@ -37,7 +38,7 @@ router.get('/insert_authorbook', async(req, res) =>{
         console.log('Transaction rolled back');
     }
 });
-
+//====Borrowing a book, If book is loaned, the data is entered into loans table and reserved details should be removed from reservation details.
 router.get('/borrow_book/:memberid/:bookid', async(req, res)=> {
     try {
         const result = await sequelize.transaction(async t =>{
